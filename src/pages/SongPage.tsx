@@ -10,11 +10,58 @@ import { getPublishedSongBySlug } from '../services/songService';
 import type { SongDetail } from '../types/content';
 
 const musicPlatforms = [
-  { key: 'youtube_music_url', label: 'YouTube Music' },
-  { key: 'spotify_url', label: 'Spotify' },
-  { key: 'apple_music_url', label: 'Apple Music' },
-  { key: 'soundcloud_url', label: 'SoundCloud' },
+  { key: 'youtube_music_url', label: 'YouTube Music', icon: 'youtube' },
+  { key: 'spotify_url', label: 'Spotify', icon: 'spotify' },
+  { key: 'apple_music_url', label: 'Apple Music', icon: 'apple' },
+  { key: 'soundcloud_url', label: 'SoundCloud', icon: 'soundcloud' },
 ] as const;
+
+function PlatformIcon({ icon }: { icon: (typeof musicPlatforms)[number]['icon'] }) {
+  if (icon === 'spotify') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" data-fill />
+        <path d="M7.4 9.1c3.2-1 6.8-.7 9.5.8" data-stroke />
+        <path d="M8 12c2.6-.7 5.4-.5 7.7.8" data-stroke />
+        <path d="M8.6 14.7c2-.5 4.1-.3 5.9.6" data-stroke />
+      </svg>
+    );
+  }
+
+  if (icon === 'apple') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M15.9 3.1c-.2 1.2-.8 2.2-1.6 2.9-.8.7-1.8 1.2-2.8 1.1.1-1.1.7-2.1 1.5-2.8.8-.8 1.9-1.3 2.9-1.2Z"
+          data-fill
+        />
+        <path
+          d="M19.1 16.9c-.4 1-.7 1.5-1.3 2.4-.8 1.2-1.9 2.7-3.3 2.7-1.2 0-1.5-.8-3.2-.8s-2 .8-3.2.8c-1.4.1-2.5-1.3-3.3-2.6-2.3-3.5-2.5-7.7-1.1-9.9 1-1.6 2.5-2.5 3.9-2.5 1.5 0 2.4.8 3.6.8 1.2 0 1.9-.8 3.6-.8 1.3 0 2.7.7 3.7 1.9-3.3 1.8-2.8 6.4.1 8Z"
+          data-fill
+        />
+      </svg>
+    );
+  }
+
+  if (icon === 'soundcloud') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M4.5 15.2a3.4 3.4 0 0 1 4-3.3 5.4 5.4 0 0 1 10.3 1.5 3.2 3.2 0 0 1-.4 6.4H4.7a2.3 2.3 0 0 1-.2-4.6Z"
+          data-fill
+        />
+        <path d="M8.2 12.1v7.7M10.2 9.7v10.1M12.2 8.5v11.3" data-stroke />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" data-stroke />
+      <path d="m10 8 6 4-6 4V8Z" data-fill />
+    </svg>
+  );
+}
 
 export default function SongPage() {
   const { slug } = useParams();
@@ -122,18 +169,27 @@ export default function SongPage() {
               {song.release_year ? `, ${song.release_year}` : ''}
             </p>
           </div>
-          <CoverImage src={song.cover_url} alt={`Обкладинка ${song.album ?? song.title}`} size="medium" />
+          <div className="song-page__media">
+            <CoverImage src={song.cover_url} alt={`Обкладинка ${song.album ?? song.title}`} size="medium" />
+            {platformLinks.length > 0 ? (
+              <nav className="music-links" aria-label="Де послухати пісню">
+                {platformLinks.map((platform) => (
+                  <a
+                    href={platform.href || '#'}
+                    key={platform.key}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Слухати в ${platform.label}`}
+                    title={platform.label}
+                  >
+                    <PlatformIcon icon={platform.icon} />
+                  </a>
+                ))}
+              </nav>
+            ) : null}
+          </div>
         </header>
         {song.short_description ? <p className="song-page__intro">{song.short_description}</p> : null}
-        {platformLinks.length > 0 ? (
-          <nav className="music-links" aria-label="Де послухати пісню">
-            {platformLinks.map((platform) => (
-              <a href={platform.href || '#'} key={platform.key} target="_blank" rel="noreferrer">
-                {platform.label}
-              </a>
-            ))}
-          </nav>
-        ) : null}
         <DeveloperNotice />
 
         <div className="lyrics" aria-label="Оригінальний текст і український переклад">

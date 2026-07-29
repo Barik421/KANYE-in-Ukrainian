@@ -375,6 +375,13 @@ a {
   gap: 28px;
 }
 
+.song-page__media {
+  display: grid;
+  justify-items: end;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
 .song-page h1,
 .text-page h1,
 .contact-page h1,
@@ -428,33 +435,81 @@ a {
 }
 
 .music-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 26px 0 44px;
+  display: grid;
+  grid-template-columns: repeat(2, 40px);
+  gap: 9px;
+  justify-content: end;
 }
 
 .music-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 0 14px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
   color: var(--text);
-  text-decoration: none;
-  background: rgba(255, 254, 254, 0.72);
+  background: rgba(255, 254, 254, 0.76);
   border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.9rem;
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(36, 24, 43, 0.04);
+  text-decoration: none;
   transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.music-links a::after {
+  position: absolute;
+  inset: -5px;
+  content: "";
+  border: 1px solid rgba(139, 77, 133, 0);
+  border-radius: inherit;
+  transform: scale(0.88);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
 .music-links a:hover {
   color: var(--accent);
+  background: #fffefe;
   border-color: #d9c6df;
-  transform: translateY(-1px);
+  box-shadow: 0 16px 36px rgba(36, 24, 43, 0.08);
+  transform: translateY(-3px) scale(1.04);
+}
+
+.music-links a:hover::after {
+  border-color: rgba(139, 77, 133, 0.22);
+  transform: scale(1);
+}
+
+.music-links svg {
+  width: 21px;
+  height: 21px;
+}
+
+.music-links [data-fill] {
+  fill: currentColor;
+  stroke: none;
+}
+
+.music-links [data-stroke] {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/*
+  Keep the platform marks monochrome so they feel like part of the editorial UI
+  rather than ads inside the song header.
+*/
+.music-links a {
+  align-items: center;
 }
 
 .lyrics {
@@ -664,6 +719,15 @@ a {
 
   .song-page__header {
     display: grid;
+  }
+
+  .song-page__media {
+    justify-items: start;
+  }
+
+  .music-links {
+    display: flex;
+    justify-content: flex-start;
   }
 
   .lyrics__row {
