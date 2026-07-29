@@ -83,7 +83,22 @@ Keep `SUPABASE_SERVICE_ROLE_KEY` only on your machine or trusted CI. Do not add 
 
 ## Supabase Schema
 
-Run `supabase/schema.sql` in the Supabase SQL editor. It creates:
+Create a Supabase project, then open **Project Settings → API** and copy:
+
+- Project URL → `VITE_SUPABASE_URL`
+- anon public key → `VITE_SUPABASE_ANON_KEY`
+- service_role key → `SUPABASE_SERVICE_ROLE_KEY` for local scripts only
+
+Put local values in `.env.local`:
+
+```bash
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+Run `supabase/schema.sql` in the Supabase SQL editor. The same SQL is also available as `supabase/migrations/20260729000000_initial_schema.sql` if you later use the Supabase CLI. It creates:
 
 - `songs`
 - `lyrics_lines`
@@ -91,6 +106,14 @@ Run `supabase/schema.sql` in the Supabase SQL editor. It creates:
 - `suggestions`
 
 Row Level Security is enabled. Public visitors can read only published songs and related lines/annotations. Public visitors can insert suggestions, but cannot read, update, or delete them.
+
+Check the connection:
+
+```bash
+npm run check-supabase
+```
+
+If the check says `Published songs visible to visitors: 0`, the connection is fine but you have not imported any published content yet.
 
 ## Content Workflow
 
@@ -119,6 +142,7 @@ npm run dev
 npm run lint
 npm run build
 npm run preview
+npm run check-supabase
 npm run generate-sitemap
 ```
 

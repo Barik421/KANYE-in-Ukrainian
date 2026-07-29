@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "import-content": "tsx scripts/import-content.ts",
     "export-content": "tsx scripts/export-content.ts",
+    "check-supabase": "node scripts/check-supabase.mjs",
     "generate-sitemap": "tsx scripts/generate-sitemap.ts"
   },
   "dependencies": {
