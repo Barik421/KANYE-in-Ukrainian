@@ -1,0 +1,28 @@
+{
+  "songs": [
+    {
+      "title": "Runaway",
+      "slug": "runaway",
+      "album": "My Beautiful Dark Twisted Fantasy",
+      "release_year": 2010,
+      "cover_url": "",
+      "short_description": "Переклад і пояснення пісні про самосаботаж, публічний образ і чесність без самовиправдання.",
+      "is_featured": true,
+      "published": true,
+      "lyrics_lines": [
+        {
+          "line_number": 1,
+          "section": "Intro",
+          "original_text": "And I always find, yeah, I always find somethin' wrong",
+          "translated_text": "І я завжди знаходжу, так, я завжди знаходжу щось не так",
+          "annotations": [
+            {
+              "phrase": "somethin' wrong",
+              "explanation": "Розмовне скорочення підкреслює неформальний, майже сповідальний тон рядка."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
