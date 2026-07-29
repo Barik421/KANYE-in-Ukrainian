@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/catalog</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/about</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/donate</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/contact</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/policy</loc>
+  </url>
+  <url>
+    <loc>https://barik421.github.io/KANYE-in-Ukrainian/song/runaway</loc>
   </url>
 </urlset>

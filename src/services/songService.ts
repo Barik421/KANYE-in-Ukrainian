@@ -46,6 +46,21 @@ export async function searchSongs(query: string): Promise<SongSummary[]> {
   return data ?? [];
 }
 
+export async function getCatalogSongs(): Promise<SongSummary[]> {
+  if (!supabase) return mockFeaturedSongs;
+
+  const { data, error } = await supabase
+    .from('songs')
+    .select('id,title,slug,album,release_year,cover_url')
+    .eq('published', true)
+    .order('release_year', { ascending: true, nullsFirst: false })
+    .order('album', { ascending: true, nullsFirst: false })
+    .order('title', { ascending: true });
+
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
 export async function getPublishedSongBySlug(slug: string): Promise<SongDetail | null> {
   if (!supabase) return mockSongs.find((song) => song.slug === slug) ?? null;
 

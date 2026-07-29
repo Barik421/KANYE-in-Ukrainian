@@ -1,6 +1,8 @@
 export const siteConfig = {
   name: 'KANYE in Ukrainian',
-  url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://example.com',
+  url:
+    (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ||
+    'https://barik421.github.io/KANYE-in-Ukrainian',
   homeTitle: 'KANYE in Ukrainian — переклади пісень Kanye West українською',
   homeDescription:
     'Українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного контексту.',
