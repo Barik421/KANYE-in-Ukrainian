@@ -5,7 +5,7 @@ export default function AboutPage() {
     <>
       <Seo
         title="Про нас | KANYE in Ukrainian"
-        description="KANYE in Ukrainian — незалежний український проєкт з авторськими перекладами пісень Kanye West і поясненнями культурного контексту."
+        description="KANYE in Ukrainian — незалежний український проєкт з перекладами пісень Kanye West і поясненнями культурного контексту."
         path="/about"
       />
       <section className="text-page">

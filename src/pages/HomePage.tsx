@@ -40,8 +40,7 @@ export default function HomePage() {
         <div className="hero__blob" aria-hidden="true" />
         <h1 id="home-title">Зрозумій більше, ніж просто слова.</h1>
         <p className="hero__text">
-          Авторські українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного
-          контексту.
+          Українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного контексту.
         </p>
         <SearchBox />
         <DeveloperNotice />

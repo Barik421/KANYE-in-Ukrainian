@@ -108,7 +108,7 @@ a {
   display: grid;
   justify-items: center;
   text-align: center;
-  padding: clamp(42px, 6vw, 76px) 0 clamp(46px, 6vw, 72px);
+  padding: clamp(18px, 3.2vw, 42px) 0 clamp(40px, 5vw, 62px);
   isolation: isolate;
 }
 
@@ -142,7 +142,7 @@ a {
 
 .hero__text {
   max-width: 640px;
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
   font-size: clamp(0.98rem, 1.5vw, 1.08rem);
   line-height: 1.65;
@@ -151,23 +151,60 @@ a {
 .search {
   position: relative;
   width: min(620px, 100%);
-  margin-top: 28px;
+  margin-top: 26px;
+  animation: search-rise 560ms ease both;
+}
+
+.search__control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 58px;
+  padding: 5px 5px 5px 20px;
+  background: rgba(255, 254, 254, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 18px 45px rgba(36, 24, 43, 0.05);
 }
 
 .search__input {
   width: 100%;
-  height: 58px;
-  padding: 0 20px;
+  min-width: 0;
+  height: 46px;
+  padding: 0;
   color: var(--text);
-  background: rgba(255, 254, 254, 0.9);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 18px 45px rgba(36, 24, 43, 0.04);
+  background: transparent;
+  border: 0;
+  outline: 0;
   font-size: 1rem;
 }
 
 .search__input::placeholder {
   color: #8b838e;
+}
+
+.search__button {
+  height: 48px;
+  padding: 0 20px;
+  color: var(--surface);
+  background: var(--text);
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.94rem;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.search__button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .search__dropdown {
@@ -180,8 +217,9 @@ a {
   text-align: left;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 18px;
   box-shadow: 0 18px 50px rgba(36, 24, 43, 0.08);
+  animation: search-dropdown-in 180ms ease both;
 }
 
 .search__option {
@@ -547,6 +585,28 @@ a {
   }
 }
 
+@keyframes search-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes search-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 720px) {
   .site-shell {
     width: min(100% - 24px, 1120px);
@@ -565,11 +625,11 @@ a {
   }
 
   .hero {
-    padding-top: 42px;
+    padding-top: 22px;
   }
 
-  .search__input {
-    height: 56px;
+  .search__control {
+    min-height: 56px;
   }
 
   .song-page__header {
@@ -600,6 +660,21 @@ a {
     font-size: 2.62rem;
   }
 
+  .search__control {
+    grid-template-columns: 1fr;
+    padding: 6px;
+    border-radius: 24px;
+  }
+
+  .search__input {
+    height: 44px;
+    padding: 0 14px;
+  }
+
+  .search__button {
+    width: 100%;
+  }
+
   .song-card {
     grid-template-columns: 56px 1fr auto;
   }
@@ -619,5 +694,9 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .search {
+    animation: none;
   }
 }

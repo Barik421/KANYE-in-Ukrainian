@@ -3,7 +3,7 @@ export const siteConfig = {
   url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://example.com',
   homeTitle: 'KANYE in Ukrainian — переклади пісень Kanye West українською',
   homeDescription:
-    'Авторські українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного контексту.',
+    'Українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного контексту.',
 };
 
 export const supabaseConfig = {

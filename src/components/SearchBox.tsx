@@ -66,50 +66,67 @@ export function SearchBox() {
     navigate(`/song/${song.slug}`);
   }
 
+  function submitSearch() {
+    if (activeIndex >= 0 && results[activeIndex]) {
+      openSong(results[activeIndex]);
+      return;
+    }
+    if (results[0]) {
+      openSong(results[0]);
+      return;
+    }
+    if (query.trim().length >= 2) setIsOpen(true);
+  }
+
   return (
     <div className="search" ref={rootRef}>
       <label className="sr-only" htmlFor={inputId}>
         Знайти пісню або альбом
       </label>
-      <input
-        id={inputId}
-        className="search__input"
-        value={query}
-        type="search"
-        placeholder="Знайти пісню або альбом"
-        autoComplete="off"
-        role="combobox"
-        aria-expanded={isOpen}
-        aria-controls={listId}
-        aria-autocomplete="list"
-        aria-activedescendant={activeIndex >= 0 ? `${listId}-${activeIndex}` : undefined}
-        onFocus={() => {
-          if (query.trim().length >= 2) setIsOpen(true);
-        }}
-        onChange={(event) => setQuery(event.target.value)}
-        onKeyDown={(event) => {
-          if (event.key === 'Escape') {
-            setIsOpen(false);
-            return;
-          }
-          if (!isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
-            setIsOpen(true);
-            return;
-          }
-          if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            setActiveIndex((index) => Math.min(index + 1, results.length - 1));
-          }
-          if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            setActiveIndex((index) => Math.max(index - 1, 0));
-          }
-          if (event.key === 'Enter' && activeIndex >= 0 && results[activeIndex]) {
-            event.preventDefault();
-            openSong(results[activeIndex]);
-          }
-        }}
-      />
+      <div className="search__control">
+        <input
+          id={inputId}
+          className="search__input"
+          value={query}
+          type="search"
+          placeholder="Знайти пісню або альбом"
+          autoComplete="off"
+          role="combobox"
+          aria-expanded={isOpen}
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={activeIndex >= 0 ? `${listId}-${activeIndex}` : undefined}
+          onFocus={() => {
+            if (query.trim().length >= 2) setIsOpen(true);
+          }}
+          onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              setIsOpen(false);
+              return;
+            }
+            if (!isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+              setIsOpen(true);
+              return;
+            }
+            if (event.key === 'ArrowDown') {
+              event.preventDefault();
+              setActiveIndex((index) => Math.min(index + 1, results.length - 1));
+            }
+            if (event.key === 'ArrowUp') {
+              event.preventDefault();
+              setActiveIndex((index) => Math.max(index - 1, 0));
+            }
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              submitSearch();
+            }
+          }}
+        />
+        <button className="search__button" type="button" aria-label="Шукати" onClick={submitSearch}>
+          Шукати
+        </button>
+      </div>
 
       {isOpen ? (
         <div className="search__dropdown" id={listId} role="listbox" aria-label="Результати пошуку">
