@@ -1,0 +1,43 @@
+import { analyticsConfig } from './config';
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+let isInitialized = false;
+
+export function initializeAnalytics() {
+  const measurementId = analyticsConfig.gaMeasurementId;
+  if (!measurementId || isInitialized || typeof window === 'undefined') return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(...args: unknown[]) {
+    window.dataLayer?.push(args);
+  };
+
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, { send_page_view: false });
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  document.head.appendChild(script);
+
+  isInitialized = true;
+}
+
+export function trackPageView(path: string, title: string) {
+  const measurementId = analyticsConfig.gaMeasurementId;
+  if (!measurementId || typeof window === 'undefined') return;
+
+  initializeAnalytics();
+  window.gtag?.('event', 'page_view', {
+    page_title: title,
+    page_location: window.location.href,
+    page_path: path,
+    send_to: measurementId,
+  });
+}

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RootLayout } from './layouts/RootLayout';
 import { LoadingText } from './components/LoadingText';
+import { usePageTracking } from './hooks/usePageTracking';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SongPage = lazy(() => import('./pages/SongPage'));
@@ -9,6 +10,8 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export function App() {
+  usePageTracking();
+
   return (
     <Suspense fallback={<LoadingText label="Завантаження..." />}>
       <Routes>

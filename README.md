@@ -25,6 +25,7 @@ Frontend environment variables:
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 VITE_SITE_URL=
+VITE_GA_MEASUREMENT_ID=
 ```
 
 Local content scripts use server-side variables only:
@@ -35,6 +36,36 @@ SUPABASE_SERVICE_ROLE_KEY=
 ```
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY` in Vite or browser code.
+
+## Google Analytics
+
+Create a GA4 property and set its measurement id in Vercel and `.env.local`:
+
+```bash
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+The app loads Google Analytics only when this variable is present. React Router route changes send `page_view` events, so song page traffic appears by URL, for example `/song/runaway`.
+
+## Database Connection
+
+Supabase is used for content, not analytics. The browser reads public published content with:
+
+```bash
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+```
+
+These values are safe to expose because Row Level Security controls what visitors can do. The schema allows public reads only for published songs, lyrics, and annotations. Suggestions can be inserted publicly, but cannot be read publicly.
+
+Content import/export scripts use elevated local-only variables:
+
+```bash
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+```
+
+Keep `SUPABASE_SERVICE_ROLE_KEY` only on your machine or trusted CI. Do not add it to Vercel frontend variables.
 
 ## Supabase Schema
 
