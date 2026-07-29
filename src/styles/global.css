@@ -60,8 +60,15 @@ a {
 }
 
 .site-shell {
+  display: flex;
+  flex-direction: column;
   width: min(1120px, calc(100% - 32px));
+  min-height: 100vh;
   margin: 0 auto;
+}
+
+.site-shell main {
+  flex: 1;
 }
 
 .site-header {
@@ -89,7 +96,6 @@ a {
 .site-header__nav a,
 .site-footer a,
 .text-link,
-.back-link,
 .song-page__suggest {
   text-decoration: none;
   border-bottom: 1px solid currentColor;
@@ -98,7 +104,6 @@ a {
 .site-header__nav a:hover,
 .site-footer a:hover,
 .text-link:hover,
-.back-link:hover,
 .song-page__suggest:hover {
   color: var(--accent);
 }
@@ -363,9 +368,29 @@ a {
 }
 
 .back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 28px;
+  padding: 9px 13px 9px 11px;
   color: var(--muted);
+  text-decoration: none;
+  background: rgba(255, 254, 254, 0.58);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(36, 24, 43, 0.035);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+  background: #fffefe;
+  border-color: #d9c6df;
+  transform: translateX(-2px);
 }
 
 .song-page__header {
@@ -437,7 +462,7 @@ a {
 .music-links {
   display: grid;
   grid-template-columns: 40px;
-  gap: 9px;
+  gap: 18px;
   justify-content: end;
 }
 
