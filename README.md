@@ -115,6 +115,8 @@ npm run check-supabase
 
 If the check says `Published songs visible to visitors: 0`, the connection is fine but you have not imported any published content yet.
 
+For a quick manual test, run `supabase/seed-test-song.sql` in the Supabase SQL editor. It adds one published test song with a placeholder lyric line and annotation, so the homepage, search, and `/song/runaway` route can be verified against real Supabase data.
+
 ## Content Workflow
 
 Use `data/content.example.json` as the JSON shape for songs, lyrics lines, and annotations.
