@@ -21,6 +21,7 @@ export function RootLayout() {
         <Link to="/about">Про нас</Link>
         <Link to="/donate">Донат</Link>
         <Link to="/contact">Контакти</Link>
+        <Link to="/policy">Правова інформація</Link>
         <Link to="/contact">Запропонувати пісню</Link>
         <small>Неофіційний незалежний проєкт.</small>
       </footer>
