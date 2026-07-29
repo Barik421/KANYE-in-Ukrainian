@@ -424,7 +424,37 @@ a {
 
 .song-page__intro {
   max-width: 680px;
-  margin: 24px 0 44px;
+  margin: 24px 0 0;
+}
+
+.music-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0 44px;
+}
+
+.music-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(255, 254, 254, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.music-links a:hover {
+  color: var(--accent);
+  border-color: #d9c6df;
+  transform: translateY(-1px);
 }
 
 .lyrics {

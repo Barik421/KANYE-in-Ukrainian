@@ -5,6 +5,10 @@ with song as (
     album,
     release_year,
     cover_url,
+    youtube_music_url,
+    spotify_url,
+    apple_music_url,
+    soundcloud_url,
     short_description,
     is_featured,
     published
@@ -15,6 +19,10 @@ with song as (
     'My Beautiful Dark Twisted Fantasy',
     2010,
     null,
+    'https://music.youtube.com/search?q=Kanye%20West%20Runaway',
+    'https://open.spotify.com/search/Runaway%20Kanye%20West',
+    'https://music.apple.com/search?term=Kanye%20West%20Runaway',
+    null,
     'Тестовий запис для перевірки сторінки пісні, пошуку, перекладу й пояснень.',
     true,
     true
@@ -24,6 +32,10 @@ with song as (
     album = excluded.album,
     release_year = excluded.release_year,
     cover_url = excluded.cover_url,
+    youtube_music_url = excluded.youtube_music_url,
+    spotify_url = excluded.spotify_url,
+    apple_music_url = excluded.apple_music_url,
+    soundcloud_url = excluded.soundcloud_url,
     short_description = excluded.short_description,
     is_featured = excluded.is_featured,
     published = excluded.published

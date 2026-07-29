@@ -9,7 +9,7 @@ const output = resolve(backupDir, `content-${new Date().toISOString().replace(/[
 const { data, error } = await supabase
   .from('songs')
   .select(
-    'id,title,slug,album,release_year,cover_url,short_description,is_featured,published,lyrics_lines(id,line_number,section,original_text,translated_text,annotations(phrase,explanation))',
+    'id,title,slug,album,release_year,cover_url,youtube_music_url,spotify_url,apple_music_url,soundcloud_url,short_description,is_featured,published,lyrics_lines(id,line_number,section,original_text,translated_text,annotations(phrase,explanation))',
   )
   .order('title', { ascending: true })
   .order('line_number', { referencedTable: 'lyrics_lines', ascending: true });

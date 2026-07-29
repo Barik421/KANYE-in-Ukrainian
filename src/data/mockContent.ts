@@ -7,6 +7,10 @@ const mockSong: SongDetail = {
   album: 'My Beautiful Dark Twisted Fantasy',
   release_year: 2010,
   cover_url: null,
+  youtube_music_url: 'https://music.youtube.com/search?q=Kanye%20West%20Runaway',
+  spotify_url: 'https://open.spotify.com/search/Runaway%20Kanye%20West',
+  apple_music_url: 'https://music.apple.com/search?term=Kanye%20West%20Runaway',
+  soundcloud_url: null,
   short_description:
     'Демо-запис для локальної розробки: приклад того, як виглядають переклад, рядки та пояснення без підключеного Supabase.',
   is_featured: true,

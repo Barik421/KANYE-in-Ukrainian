@@ -143,6 +143,19 @@ Backups are written to `backups/`.
 
 To add a new song, add a song object with `title`, `slug`, published metadata, ordered `lyrics_lines`, and optional line-level `annotations`, then run the import script.
 
+Songs may also include listening links:
+
+```json
+{
+  "youtube_music_url": "https://music.youtube.com/...",
+  "spotify_url": "https://open.spotify.com/...",
+  "apple_music_url": "https://music.apple.com/...",
+  "soundcloud_url": "https://soundcloud.com/..."
+}
+```
+
+Use `cover_url` for album artwork. Keep it as a direct image URL or a stable hosted asset URL.
+
 ## Commands
 
 ```bash

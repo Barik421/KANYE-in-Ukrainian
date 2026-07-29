@@ -12,6 +12,10 @@ export interface ContentSong {
   album?: string | null;
   release_year?: number | null;
   cover_url?: string | null;
+  youtube_music_url?: string | null;
+  spotify_url?: string | null;
+  apple_music_url?: string | null;
+  soundcloud_url?: string | null;
   short_description?: string | null;
   is_featured?: boolean;
   published?: boolean;

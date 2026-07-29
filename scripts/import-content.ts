@@ -12,7 +12,17 @@ for (const song of content.songs) {
   const { lyrics_lines: lines = [], ...songFields } = song;
   const { data: upsertedSong, error: songError } = await supabase
     .from('songs')
-    .upsert(songFields, { onConflict: 'slug' })
+    .upsert(
+      {
+        ...songFields,
+        cover_url: songFields.cover_url || null,
+        youtube_music_url: songFields.youtube_music_url || null,
+        spotify_url: songFields.spotify_url || null,
+        apple_music_url: songFields.apple_music_url || null,
+        soundcloud_url: songFields.soundcloud_url || null,
+      },
+      { onConflict: 'slug' },
+    )
     .select('id')
     .single();
 

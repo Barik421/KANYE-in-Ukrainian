@@ -2,7 +2,8 @@ import { supabase } from '../lib/supabaseClient';
 import { mockFeaturedSongs, mockSongs } from '../data/mockContent';
 import type { Annotation, LyricsLine, SongDetail, SongSummary } from '../types/content';
 
-const songSummaryFields = 'id,title,slug,album,release_year,cover_url,short_description,is_featured,published';
+const songSummaryFields =
+  'id,title,slug,album,release_year,cover_url,youtube_music_url,spotify_url,apple_music_url,soundcloud_url,short_description,is_featured,published';
 
 type LyricsLineRow = Omit<LyricsLine, 'annotations'> & {
   annotations: Annotation[] | null;

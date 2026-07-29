@@ -9,6 +9,13 @@ import { Seo } from '../lib/seo';
 import { getPublishedSongBySlug } from '../services/songService';
 import type { SongDetail } from '../types/content';
 
+const musicPlatforms = [
+  { key: 'youtube_music_url', label: 'YouTube Music' },
+  { key: 'spotify_url', label: 'Spotify' },
+  { key: 'apple_music_url', label: 'Apple Music' },
+  { key: 'soundcloud_url', label: 'SoundCloud' },
+] as const;
+
 export default function SongPage() {
   const { slug } = useParams();
   const [song, setSong] = useState<SongDetail | null>(null);
@@ -96,6 +103,9 @@ export default function SongPage() {
     line,
     showSection: Boolean(line.section && line.section !== lines[index - 1]?.section),
   }));
+  const platformLinks = musicPlatforms
+    .map((platform) => ({ ...platform, href: song[platform.key] }))
+    .filter((platform) => Boolean(platform.href));
 
   return (
     <>
@@ -115,6 +125,15 @@ export default function SongPage() {
           <CoverImage src={song.cover_url} alt={`Обкладинка ${song.album ?? song.title}`} size="medium" />
         </header>
         {song.short_description ? <p className="song-page__intro">{song.short_description}</p> : null}
+        {platformLinks.length > 0 ? (
+          <nav className="music-links" aria-label="Де послухати пісню">
+            {platformLinks.map((platform) => (
+              <a href={platform.href || '#'} key={platform.key} target="_blank" rel="noreferrer">
+                {platform.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
         <DeveloperNotice />
 
         <div className="lyrics" aria-label="Оригінальний текст і український переклад">
