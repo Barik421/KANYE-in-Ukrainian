@@ -1,0 +1,28 @@
+{
+  "songs": [
+    {
+      "title": "Runaway",
+      "slug": "runaway",
+      "album": "My Beautiful Dark Twisted Fantasy",
+      "release_year": 2010,
+      "cover_url": "",
+      "short_description": "Тестовий запис для перевірки сторінки пісні, пошуку, перекладу й пояснень.",
+      "is_featured": true,
+      "published": true,
+      "lyrics_lines": [
+        {
+          "line_number": 1,
+          "section": "Intro",
+          "original_text": "[original line placeholder]",
+          "translated_text": "Тестовий рядок перекладу для перевірки сторінки.",
+          "annotations": [
+            {
+              "phrase": "placeholder",
+              "explanation": "Тестове пояснення: тут згодом буде розбір сленгу, гри слів або культурного контексту."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

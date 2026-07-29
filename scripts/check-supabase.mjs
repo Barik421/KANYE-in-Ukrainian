@@ -36,16 +36,22 @@ const publicClient = createClient(publicUrl, anonKey, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
-const { count: publishedCount, error: publicError } = await publicClient
+const { data: publishedSongs, error: publicError } = await publicClient
   .from('songs')
-  .select('id', { count: 'exact', head: true })
-  .eq('published', true);
+  .select('id')
+  .eq('published', true)
+  .limit(1);
 
 if (publicError) {
+  if (publicError.code === 'PGRST205') {
+    throw new Error(
+      `Public Supabase check failed: ${publicError.message}. Run supabase/schema.sql in the Supabase SQL Editor first.`,
+    );
+  }
   throw new Error(`Public Supabase check failed: ${publicError.message}`);
 }
 
-console.log(`Public connection OK. Published songs visible to visitors: ${publishedCount ?? 0}`);
+console.log(`Public connection OK. Published song sample visible: ${publishedSongs?.length ?? 0}`);
 
 if (!adminUrl || !serviceRoleKey) {
   console.log('Admin check skipped. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to verify import/export access.');
@@ -56,12 +62,18 @@ const adminClient = createClient(adminUrl, serviceRoleKey, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
-const { count: allSongsCount, error: adminError } = await adminClient
+const { data: allSongs, error: adminError } = await adminClient
   .from('songs')
-  .select('id', { count: 'exact', head: true });
+  .select('id')
+  .limit(1);
 
 if (adminError) {
+  if (adminError.code === 'PGRST205') {
+    throw new Error(
+      `Admin Supabase check failed: ${adminError.message}. Run supabase/schema.sql in the Supabase SQL Editor first.`,
+    );
+  }
   throw new Error(`Admin Supabase check failed: ${adminError.message}`);
 }
 
-console.log(`Admin connection OK. Total songs in database: ${allSongsCount ?? 0}`);
+console.log(`Admin connection OK. Song table sample rows: ${allSongs?.length ?? 0}`);
