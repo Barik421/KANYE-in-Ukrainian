@@ -436,7 +436,7 @@ a {
 
 .music-links {
   display: grid;
-  grid-template-columns: repeat(2, 40px);
+  grid-template-columns: 40px;
   gap: 9px;
   justify-content: end;
 }

@@ -20,7 +20,7 @@ function PlatformIcon({ icon }: { icon: (typeof musicPlatforms)[number]['icon'] 
   if (icon === 'spotify') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" data-fill />
+        <circle cx="12" cy="12" r="9" data-stroke />
         <path d="M7.4 9.1c3.2-1 6.8-.7 9.5.8" data-stroke />
         <path d="M8 12c2.6-.7 5.4-.5 7.7.8" data-stroke />
         <path d="M8.6 14.7c2-.5 4.1-.3 5.9.6" data-stroke />
