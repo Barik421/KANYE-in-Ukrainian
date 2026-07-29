@@ -12,6 +12,13 @@ interface AlbumGroup {
 }
 
 const unknownAlbum = 'Без альбому';
+const artistStats = {
+  studioAlbums: 11,
+  spotifyTracks: 486,
+  updatedAt: '29 липня 2026',
+  albumSourceUrl: 'https://yewiki.org/Ye_Chronology_%28Albums%29',
+  trackSourceUrl: 'https://kworb.net/spotify/artist/5K4W6rqBFWDnAN6FQUkS6x_songs.html',
+};
 
 function formatTrackCount(count: number) {
   const lastTwoDigits = count % 100;
@@ -94,6 +101,37 @@ export default function CatalogPage() {
         <p className="catalog-page__intro">
           Альбоми й треки, для яких у базі вже є опубліковані українські переклади або тестові записи.
         </p>
+
+        <section className="artist-overview" aria-labelledby="artist-overview-title">
+          <div className="artist-overview__copy">
+            <h2 id="artist-overview-title">Статистика Kanye West</h2>
+            <p>
+              Орієнтир по повному каталогу артиста, щоб було видно масштаб роботи над перекладами. Ці цифри
+              оновлюються вручну, бо релізи, фіти й колаборації різні сервіси рахують по-різному.
+            </p>
+          </div>
+          <dl className="artist-overview__stats">
+            <div>
+              <dt>Студійних альбомів</dt>
+              <dd>{artistStats.studioAlbums}</dd>
+            </div>
+            <div>
+              <dt>Треків у Spotify-каталозі</dt>
+              <dd>{artistStats.spotifyTracks}</dd>
+            </div>
+          </dl>
+          <p className="artist-overview__source">
+            Дані звірено {artistStats.updatedAt}:{' '}
+            <a href={artistStats.albumSourceUrl} target="_blank" rel="noreferrer">
+              YeWiki
+            </a>{' '}
+            і{' '}
+            <a href={artistStats.trackSourceUrl} target="_blank" rel="noreferrer">
+              Kworb
+            </a>
+            .
+          </p>
+        </section>
 
         {isLoading ? <LoadingText label="Завантаження каталогу..." /> : null}
         {!isLoading && error ? <p className="state-text state-text--error">{error}</p> : null}
