@@ -26,6 +26,9 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 VITE_SITE_URL=
 VITE_GA_MEASUREMENT_ID=
+VITE_CONTACT_EMAIL=
+VITE_DONATE_URL=
+VITE_BASE_PATH=/
 ```
 
 Local content scripts use server-side variables only:
@@ -46,6 +49,17 @@ VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 The app loads Google Analytics only when this variable is present. React Router route changes send `page_view` events, so song page traffic appears by URL, for example `/song/runaway`.
+
+## Static Contact And Donations
+
+The project is safe to host as a static site. Contact and song suggestions use email links instead of a backend form:
+
+```bash
+VITE_CONTACT_EMAIL=you@example.com
+VITE_DONATE_URL=https://your-donation-link.example
+```
+
+If these variables are empty, the pages show a developer-facing notice instead of a broken action.
 
 ## Database Connection
 
@@ -123,3 +137,13 @@ Because this is a Vite client-side SPA, crawlers that do not execute JavaScript 
 ## Vercel Deployment
 
 Set the Vite Supabase variables in Vercel project settings. `vercel.json` rewrites all direct route visits to `index.html`, so `/song/runaway` works on refresh and direct navigation.
+
+## GitHub Pages Deployment
+
+For a project page without a custom domain, set:
+
+```bash
+VITE_BASE_PATH=/KANYE-in-Ukrainian/
+```
+
+`npm run build` also creates `dist/404.html`, which lets GitHub Pages fall back to the React app for direct visits such as `/song/runaway`.

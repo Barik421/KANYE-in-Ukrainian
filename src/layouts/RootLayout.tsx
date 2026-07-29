@@ -8,7 +8,8 @@ export function RootLayout() {
           KANYE in Ukrainian
         </Link>
         <nav className="site-header__nav" aria-label="Основна навігація">
-          <Link to="/contact">Запропонувати пісню</Link>
+          <Link to="/about">Про нас</Link>
+          <Link to="/donate">Донат</Link>
           <Link to="/contact">Контакти</Link>
         </nav>
       </header>
@@ -17,6 +18,8 @@ export function RootLayout() {
       </main>
       <footer className="site-footer">
         <span>KANYE in Ukrainian</span>
+        <Link to="/about">Про нас</Link>
+        <Link to="/donate">Донат</Link>
         <Link to="/contact">Контакти</Link>
         <Link to="/contact">Запропонувати пісню</Link>
         <small>Неофіційний незалежний проєкт.</small>

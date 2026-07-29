@@ -38,7 +38,6 @@ export default function HomePage() {
       <Seo title={siteConfig.homeTitle} description={siteConfig.homeDescription} />
       <section className="hero" aria-labelledby="home-title">
         <div className="hero__blob" aria-hidden="true" />
-        <p className="hero__brand">KANYE in Ukrainian</p>
         <h1 id="home-title">Зрозумій більше, ніж просто слова.</h1>
         <p className="hero__text">
           Авторські українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного

@@ -7,6 +7,8 @@ import { usePageTracking } from './hooks/usePageTracking';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SongPage = lazy(() => import('./pages/SongPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const DonatePage = lazy(() => import('./pages/DonatePage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export function App() {
@@ -18,6 +20,8 @@ export function App() {
         <Route element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path="song/:slug" element={<SongPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="donate" element={<DonatePage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

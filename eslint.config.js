@@ -8,6 +8,15 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    files: ['scripts/**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: {
+        console: 'readonly',
+      },
+    },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
@@ -16,6 +25,7 @@ export default tseslint.config(
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
+        console: 'readonly',
         document: 'readonly',
         window: 'readonly',
         HTMLElement: 'readonly',

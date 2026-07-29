@@ -1,46 +1,14 @@
-import { FormEvent, useState } from 'react';
+import { contactConfig } from '../lib/config';
 import { Seo } from '../lib/seo';
-import { submitSuggestion } from '../services/suggestionService';
-import type { SuggestionInput, SuggestionType } from '../types/content';
 
-const requestTypes: Array<{ value: SuggestionType; label: string }> = [
-  { value: 'song', label: 'Запропонувати пісню' },
-  { value: 'mistake', label: 'Повідомити про неточність' },
-  { value: 'better_translation', label: 'Запропонувати кращий переклад' },
-  { value: 'contact', label: 'Зв’язатися з автором' },
-];
+function buildMailto(subject: string, body = '') {
+  if (!contactConfig.email) return '';
+  const params = new URLSearchParams({ subject, body });
+  return `mailto:${contactConfig.email}?${params.toString()}`;
+}
 
 export default function ContactPage() {
-  const [form, setForm] = useState<SuggestionInput>({ type: 'song', message: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [error, setError] = useState('');
-
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError('');
-
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      setError('Перевірте email або залиште поле порожнім.');
-      setStatus('error');
-      return;
-    }
-
-    if (form.message.trim().length < 10) {
-      setError('Напишіть трохи більше деталей.');
-      setStatus('error');
-      return;
-    }
-
-    setStatus('loading');
-    try {
-      await submitSuggestion({ ...form, message: form.message.trim() });
-      setStatus('success');
-      setForm({ type: 'song', message: '' });
-    } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : 'Не вдалося надіслати повідомлення.');
-      setStatus('error');
-    }
-  }
+  const hasEmail = Boolean(contactConfig.email);
 
   return (
     <>
@@ -49,61 +17,33 @@ export default function ContactPage() {
         description="Запропонуйте пісню, повідомте про неточність або напишіть автору KANYE in Ukrainian."
         path="/contact"
       />
-      <section className="contact-page">
+      <section className="text-page">
         <h1>Контакти</h1>
-        <form className="contact-form" onSubmit={onSubmit}>
-          <label>
-            Ім’я
-            <input
-              value={form.name ?? ''}
-              onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-              autoComplete="name"
-            />
-          </label>
-          <label>
-            Email
-            <input
-              value={form.email ?? ''}
-              type="email"
-              onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-              autoComplete="email"
-            />
-          </label>
-          <label>
-            Тип звернення
-            <select
-              value={form.type}
-              onChange={(event) => setForm((current) => ({ ...current, type: event.target.value as SuggestionType }))}
+        <p>
+          Якщо хочете запропонувати пісню, повідомити про неточність у перекладі або просто написати автору, найпростіше
+          зробити це через пошту.
+        </p>
+
+        {hasEmail ? (
+          <div className="link-list" aria-label="Контактні дії">
+            <a href={buildMailto('Пропозиція пісні для KANYE in Ukrainian', 'Пісня або посилання:\n\nЧому саме вона:\n')}>
+              Запропонувати пісню
+            </a>
+            <a
+              href={buildMailto(
+                'Неточність у перекладі на KANYE in Ukrainian',
+                'Пісня:\nРядок:\nЩо варто змінити:\n',
+              )}
             >
-              {requestTypes.map((type) => (
-                <option value={type.value} key={type.value}>
-                  {type.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Пісня або посилання
-            <input
-              value={form.song_reference ?? ''}
-              onChange={(event) => setForm((current) => ({ ...current, song_reference: event.target.value }))}
-            />
-          </label>
-          <label>
-            Повідомлення
-            <textarea
-              value={form.message}
-              required
-              rows={6}
-              onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-            />
-          </label>
-          <button className="plain-button" type="submit" disabled={status === 'loading'}>
-            {status === 'loading' ? 'Надсилання...' : 'Надіслати'}
-          </button>
-          {status === 'success' ? <p className="state-text">Дякую. Повідомлення надіслано.</p> : null}
-          {status === 'error' ? <p className="state-text state-text--error">{error}</p> : null}
-        </form>
+              Повідомити про неточність
+            </a>
+            <a href={buildMailto('Контакт із KANYE in Ukrainian')}>Написати автору</a>
+          </div>
+        ) : (
+          <p className="developer-notice" role="status">
+            Додайте `VITE_CONTACT_EMAIL` перед публікацією, щоб увімкнути поштові посилання.
+          </p>
+        )}
       </section>
     </>
   );

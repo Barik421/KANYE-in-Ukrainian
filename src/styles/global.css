@@ -130,13 +130,6 @@ a {
   animation: blob-drift 24s ease-in-out infinite alternate;
 }
 
-.hero__brand {
-  margin: 0 0 16px;
-  color: var(--accent);
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
 .hero h1 {
   max-width: 720px;
   margin: 0;
@@ -323,6 +316,7 @@ a {
 }
 
 .song-page,
+.text-page,
 .contact-page,
 .narrow-page {
   width: min(880px, 100%);
@@ -344,6 +338,7 @@ a {
 }
 
 .song-page h1,
+.text-page h1,
 .contact-page h1,
 .narrow-page h1 {
   margin: 0;
@@ -352,6 +347,35 @@ a {
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0;
+}
+
+.text-page {
+  max-width: 720px;
+}
+
+.text-page p {
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.link-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.link-list a {
+  display: inline-flex;
+  width: fit-content;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.link-list a:hover {
+  color: var(--accent);
 }
 
 .song-page__header p,
@@ -479,6 +503,12 @@ a {
   cursor: pointer;
 }
 
+.plain-button--link {
+  display: inline-flex;
+  margin-top: 28px;
+  text-decoration: none;
+}
+
 .plain-button:disabled {
   cursor: wait;
   opacity: 0.65;
@@ -562,7 +592,7 @@ a {
 }
 
 @media (max-width: 460px) {
-  .site-header__nav a:first-child {
+  .site-header__nav a:nth-child(1) {
     display: none;
   }
 
