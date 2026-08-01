@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fbf8ff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>KANYE in Ukrainian — переклади пісень Kanye West українською</title>
@@ -10,6 +11,21 @@
       name="description"
       content="Українські переклади пісень Kanye West із поясненням сленгу, гри слів, відсилок і культурного контексту."
     />
+    <script>
+      (() => {
+        const key = 'kanye-in-ukrainian-theme';
+        const savedTheme = window.localStorage.getItem(key);
+        const theme =
+          savedTheme === 'light' || savedTheme === 'dark'
+            ? savedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
