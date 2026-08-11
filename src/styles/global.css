@@ -519,45 +519,23 @@ a {
   line-height: 1.7;
 }
 
-.stats-page__status {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 34px 0 28px;
-}
-
-.stats-page__status div,
 .stats-page__placeholder {
   background: var(--surface-soft);
   border: 1px solid var(--line);
   border-radius: 8px;
-}
-
-.stats-page__status div {
-  padding: 18px 20px;
-}
-
-.stats-page__status dt {
-  color: var(--muted);
-  font-size: 0.86rem;
-}
-
-.stats-page__status dd {
-  margin: 8px 0 0;
-  color: var(--text);
-  font-size: 1.08rem;
-  font-weight: 650;
 }
 
 .stats-page__dashboard {
   width: 100%;
   min-height: 680px;
+  margin-top: 34px;
   background: var(--surface-soft);
   border: 1px solid var(--line);
   border-radius: 8px;
 }
 
 .stats-page__placeholder {
+  margin-top: 34px;
   padding: 26px;
 }
 
@@ -1115,7 +1093,6 @@ a {
   }
 
   .catalog-stats,
-  .stats-page__status,
   .artist-overview,
   .catalog-browser {
     grid-template-columns: 1fr;

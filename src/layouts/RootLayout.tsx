@@ -10,7 +10,6 @@ export function RootLayout() {
         </Link>
         <nav className="site-header__nav" aria-label="Основна навігація">
           <Link to="/catalog">Каталог</Link>
-          <Link to="/stats">Статистика</Link>
           <Link to="/about">Про нас</Link>
           <Link to="/donate">Донат</Link>
           <Link to="/contact">Контакти</Link>
@@ -23,7 +22,6 @@ export function RootLayout() {
       <footer className="site-footer">
         <span>KANYE in Ukrainian</span>
         <Link to="/catalog">Каталог</Link>
-        <Link to="/stats">Статистика</Link>
         <Link to="/about">Про нас</Link>
         <Link to="/donate">Донат</Link>
         <Link to="/contact">Контакти</Link>
