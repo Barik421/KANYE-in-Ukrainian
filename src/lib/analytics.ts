@@ -13,6 +13,11 @@ export function initializeAnalytics() {
   const measurementId = analyticsConfig.gaMeasurementId;
   if (!measurementId || isInitialized || typeof window === 'undefined') return;
 
+  if (window.gtag) {
+    isInitialized = true;
+    return;
+  }
+
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag(...args: unknown[]) {
     window.dataLayer?.push(args);
