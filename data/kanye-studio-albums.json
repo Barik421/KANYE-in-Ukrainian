@@ -101,7 +101,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Jesus%20Walks",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому The College Dropout. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -281,7 +281,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Through%20the%20Wire",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому The College Dropout. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -356,7 +356,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Touch%20the%20Sky",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Late Registration. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -371,7 +371,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Gold%20Digger",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Late Registration. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -671,7 +671,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Stronger",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Graduation. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -761,7 +761,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Flashing%20Lights",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Graduation. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -866,7 +866,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Heartless",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому 808s & Heartbreak. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1046,7 +1046,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Power",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому My Beautiful Dark Twisted Fantasy. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1076,7 +1076,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20All%20of%20the%20Lights",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому My Beautiful Dark Twisted Fantasy. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1226,7 +1226,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Black%20Skinhead",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Yeezus. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1361,7 +1361,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Ultralight%20Beam",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому The Life of Pablo. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1736,7 +1736,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Ghost%20Town",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому ye. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1796,7 +1796,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Follow%20God",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Jesus Is King. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },
@@ -1991,7 +1991,7 @@
       "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20Hurricane",
       "soundcloud_url": "",
       "short_description": "Сторінка пісні з альбому Donda. Переклад і пояснення буде додано поступово.",
-      "is_featured": false,
+      "is_featured": true,
       "published": true,
       "lyrics_lines": []
     },

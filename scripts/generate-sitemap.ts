@@ -12,7 +12,7 @@ if (supabase) {
   slugs = (data ?? []).map((song) => song.slug as string);
 }
 
-const staticPaths = ['/', '/catalog', '/about', '/donate', '/contact', '/policy'];
+const staticPaths = ['/', '/catalog', '/stats', '/about', '/donate', '/contact', '/policy'];
 const urls = [...staticPaths, ...slugs.map((slug) => `/song/${slug}`)]
   .map((path) => `  <url>\n    <loc>${siteUrl}${path}</loc>\n  </url>`)
   .join('\n');

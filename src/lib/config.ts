@@ -18,6 +18,7 @@ export const hasSupabaseConfig = Boolean(supabaseConfig.url && supabaseConfig.an
 
 export const analyticsConfig = {
   gaMeasurementId: import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined,
+  dashboardUrl: import.meta.env.VITE_ANALYTICS_DASHBOARD_URL as string | undefined,
 };
 
 export const contactConfig = {

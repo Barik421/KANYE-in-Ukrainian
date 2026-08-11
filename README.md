@@ -26,6 +26,7 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 VITE_SITE_URL=
 VITE_GA_MEASUREMENT_ID=
+VITE_ANALYTICS_DASHBOARD_URL=
 VITE_CONTACT_EMAIL=
 VITE_DONATE_URL=
 VITE_BASE_PATH=/
@@ -49,6 +50,14 @@ VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 The app loads Google Analytics only when this variable is present. React Router route changes send `page_view` events, so song page traffic appears by URL, for example `/song/runaway`.
+
+Song pages also send a `song_view` event with `song_slug`, `song_title`, and `song_album`. The `/stats` page is ready for a public Looker Studio or GA dashboard embed:
+
+```bash
+VITE_ANALYTICS_DASHBOARD_URL=https://lookerstudio.google.com/embed/...
+```
+
+Do not put Google Analytics Data API credentials in browser environment variables. For GitHub Pages, use GA reports directly or a public dashboard embed.
 
 ## Static Contact And Donations
 

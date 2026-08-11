@@ -11,6 +11,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const DonatePage = lazy(() => import('./pages/DonatePage'));
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
+const StatsPage = lazy(() => import('./pages/StatsPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export function App() {
@@ -25,6 +26,7 @@ export function App() {
           <Route path="catalog" element={<CatalogPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="donate" element={<DonatePage />} />
+          <Route path="stats" element={<StatsPage />} />
           <Route path="policy" element={<PolicyPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />

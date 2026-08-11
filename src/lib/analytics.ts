@@ -41,3 +41,16 @@ export function trackPageView(path: string, title: string) {
     send_to: measurementId,
   });
 }
+
+export function trackSongView(song: { slug: string; title: string; album?: string | null }) {
+  const measurementId = analyticsConfig.gaMeasurementId;
+  if (!measurementId || typeof window === 'undefined') return;
+
+  initializeAnalytics();
+  window.gtag?.('event', 'song_view', {
+    song_slug: song.slug,
+    song_title: song.title,
+    song_album: song.album ?? '',
+    send_to: measurementId,
+  });
+}

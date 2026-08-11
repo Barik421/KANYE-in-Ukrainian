@@ -4,6 +4,7 @@ import { AnnotationText } from '../components/AnnotationText';
 import { CoverImage } from '../components/CoverImage';
 import { DeveloperNotice } from '../components/DeveloperNotice';
 import { LoadingText } from '../components/LoadingText';
+import { trackSongView } from '../lib/analytics';
 import { siteConfig } from '../lib/config';
 import { Seo } from '../lib/seo';
 import { getPublishedSongBySlug } from '../services/songService';
@@ -123,6 +124,11 @@ export default function SongPage() {
         },
       ],
     };
+  }, [song]);
+
+  useEffect(() => {
+    if (!song) return;
+    trackSongView({ slug: song.slug, title: song.title, album: song.album });
   }, [song]);
 
   if (isLoading) return <LoadingText label="Завантаження перекладу..." />;
