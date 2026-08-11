@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabaseClient';
 import { mockFeaturedSongs, mockSongs } from '../data/mockContent';
+import { supabaseConfig } from '../lib/config';
 import type { Annotation, LyricsLine, SongDetail, SongSummary } from '../types/content';
 
 const songSummaryFields =
@@ -16,14 +17,14 @@ function isNetworkError(error: { message?: string } | null) {
 }
 
 function shouldUseLocalFallback(error: { message?: string } | null) {
-  return import.meta.env.DEV && isNetworkError(error);
+  return supabaseConfig.enableMockFallback && isNetworkError(error);
 }
 
 async function withDevTimeout<TRequest, TFallback>(
   request: PromiseLike<TRequest>,
   fallback: () => TFallback,
 ): Promise<TRequest | TFallback> {
-  if (!import.meta.env.DEV) return request;
+  if (!supabaseConfig.enableMockFallback) return request;
 
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
