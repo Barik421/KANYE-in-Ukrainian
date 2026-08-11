@@ -8,6 +8,7 @@ declare global {
 }
 
 let isInitialized = false;
+let skippedStaticInitialPageView = false;
 
 export function initializeAnalytics() {
   const measurementId = analyticsConfig.gaMeasurementId;
@@ -38,7 +39,13 @@ export function trackPageView(path: string, title: string) {
   const measurementId = analyticsConfig.gaMeasurementId;
   if (!measurementId || typeof window === 'undefined') return;
 
+  const hasStaticGtag = Boolean(window.gtag) && !isInitialized;
   initializeAnalytics();
+  if (hasStaticGtag && !skippedStaticInitialPageView) {
+    skippedStaticInitialPageView = true;
+    return;
+  }
+
   window.gtag?.('event', 'page_view', {
     page_title: title,
     page_location: window.location.href,

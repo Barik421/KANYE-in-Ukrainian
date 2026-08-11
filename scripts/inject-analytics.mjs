@@ -28,7 +28,7 @@ const tag = `    <script async src="https://www.googletagmanager.com/gtag/js?id=
         window.dataLayer.push(arguments);
       };
       window.gtag('js', new Date());
-      window.gtag('config', ${escapedMeasurementId}, { send_page_view: false });
+      window.gtag('config', ${escapedMeasurementId});
     </script>
 `;
 
