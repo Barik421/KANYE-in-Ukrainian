@@ -1,0 +1,51 @@
+{
+  "songs": [
+    {
+      "title": "All Falls Down",
+      "slug": "all-falls-down",
+      "album": "The College Dropout",
+      "release_year": 2004,
+      "cover_url": "",
+      "youtube_music_url": "https://music.youtube.com/search?q=Kanye%20West%20All%20Falls%20Down",
+      "spotify_url": "https://open.spotify.com/search/All%20Falls%20Down%20Kanye%20West",
+      "apple_music_url": "https://music.apple.com/search?term=Kanye%20West%20All%20Falls%20Down",
+      "soundcloud_url": "",
+      "short_description": "Пробна сторінка для перевірки додавання тексту, перекладу й пояснень через JSON-імпорт.",
+      "is_featured": true,
+      "published": true,
+      "lyrics_lines": [
+        {
+          "line_number": 1,
+          "section": "Intro",
+          "original_text": "[original line 1 goes here]",
+          "translated_text": "Тут буде український переклад першого рядка.",
+          "annotations": [
+            {
+              "phrase": "original line",
+              "explanation": "Тестове пояснення: тут можна розібрати сленг, гру слів або культурний контекст конкретної фрази."
+            }
+          ]
+        },
+        {
+          "line_number": 2,
+          "section": "Verse 1",
+          "original_text": "[original line 2 goes here]",
+          "translated_text": "Тут буде український переклад другого рядка.",
+          "annotations": []
+        },
+        {
+          "line_number": 3,
+          "section": "Verse 1",
+          "original_text": "[original line 3 goes here]",
+          "translated_text": "Тут буде український переклад третього рядка.",
+          "annotations": [
+            {
+              "phrase": "line 3",
+              "explanation": "Приклад другої анотації до іншого рядка. Фраза має точно збігатися з частиною original_text."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
