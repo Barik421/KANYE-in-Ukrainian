@@ -46,10 +46,12 @@ export function trackPageView(path: string, title: string) {
     return;
   }
 
+  const fullPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
   window.gtag?.('event', 'page_view', {
     page_title: title,
     page_location: window.location.href,
-    page_path: path,
+    page_path: fullPath || path,
     send_to: measurementId,
   });
 }
