@@ -888,6 +888,16 @@ a {
   color: var(--muted);
 }
 
+.song-page__empty {
+  margin: 34px 0 0;
+  padding: 18px 20px;
+  color: var(--muted);
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  line-height: 1.65;
+}
+
 .contact-page {
   max-width: 680px;
 }

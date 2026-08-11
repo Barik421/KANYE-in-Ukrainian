@@ -192,21 +192,25 @@ export default function SongPage() {
         {song.short_description ? <p className="song-page__intro">{song.short_description}</p> : null}
         <DeveloperNotice />
 
-        <div className="lyrics" aria-label="Оригінальний текст і український переклад">
-          {linesWithSectionState.map(({ line, showSection }) => {
-            return (
-              <div className="lyrics__group" key={line.id}>
-                {showSection ? <h2 className="lyrics__section">{line.section}</h2> : null}
-                <div className="lyrics__row">
-                  <p className="lyrics__original">
-                    <AnnotationText text={line.original_text} annotations={line.annotations} />
-                  </p>
-                  <p className="lyrics__translation">{line.translated_text}</p>
+        {linesWithSectionState.length > 0 ? (
+          <div className="lyrics" aria-label="Оригінальний текст і український переклад">
+            {linesWithSectionState.map(({ line, showSection }) => {
+              return (
+                <div className="lyrics__group" key={line.id}>
+                  {showSection ? <h2 className="lyrics__section">{line.section}</h2> : null}
+                  <div className="lyrics__row">
+                    <p className="lyrics__original">
+                      <AnnotationText text={line.original_text} annotations={line.annotations} />
+                    </p>
+                    <p className="lyrics__translation">{line.translated_text}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="song-page__empty">Переклад готується. Ця сторінка вже створена, але текст і пояснення ще не додано.</p>
+        )}
 
         <Link className="song-page__suggest" to="/contact">
           Знайшли неточність або маєте кращий варіант перекладу?
