@@ -9,6 +9,22 @@ type LyricsLineRow = Omit<LyricsLine, 'annotations'> & {
   annotations: Annotation[] | null;
 };
 
+function isNetworkError(error: { message?: string } | null) {
+  return Boolean(error?.message && /fetch failed|failed to fetch|networkerror/i.test(error.message));
+}
+
+function shouldUseLocalFallback(error: { message?: string } | null) {
+  return import.meta.env.DEV && isNetworkError(error);
+}
+
+function searchMockSongs(query: string) {
+  const needle = query.toLocaleLowerCase('uk');
+  return mockFeaturedSongs.filter((song) => {
+    const haystack = `${song.title} ${song.album ?? ''}`.toLocaleLowerCase('uk');
+    return haystack.includes(needle);
+  });
+}
+
 export async function getFeaturedSongs(): Promise<SongSummary[]> {
   if (!supabase) return mockFeaturedSongs;
 
@@ -19,20 +35,18 @@ export async function getFeaturedSongs(): Promise<SongSummary[]> {
     .eq('is_featured', true)
     .order('title', { ascending: true });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    if (shouldUseLocalFallback(error)) return mockFeaturedSongs;
+    throw new Error(error.message);
+  }
+
   return data ?? [];
 }
 
 export async function searchSongs(query: string): Promise<SongSummary[]> {
   const value = query.trim();
   if (value.length < 2) return [];
-  if (!supabase) {
-    const needle = value.toLocaleLowerCase('uk');
-    return mockFeaturedSongs.filter((song) => {
-      const haystack = `${song.title} ${song.album ?? ''}`.toLocaleLowerCase('uk');
-      return haystack.includes(needle);
-    });
-  }
+  if (!supabase) return searchMockSongs(value);
 
   const escaped = value.replaceAll('%', '\\%').replaceAll('_', '\\_');
   const { data, error } = await supabase
@@ -42,7 +56,11 @@ export async function searchSongs(query: string): Promise<SongSummary[]> {
     .or(`title.ilike.%${escaped}%,album.ilike.%${escaped}%`)
     .limit(8);
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    if (shouldUseLocalFallback(error)) return searchMockSongs(value);
+    throw new Error(error.message);
+  }
+
   return data ?? [];
 }
 
@@ -57,7 +75,11 @@ export async function getCatalogSongs(): Promise<SongSummary[]> {
     .order('album', { ascending: true, nullsFirst: false })
     .order('title', { ascending: true });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    if (shouldUseLocalFallback(error)) return mockFeaturedSongs;
+    throw new Error(error.message);
+  }
+
   return data ?? [];
 }
 
@@ -74,7 +96,11 @@ export async function getPublishedSongBySlug(slug: string): Promise<SongDetail |
     .order('line_number', { referencedTable: 'lyrics_lines', ascending: true })
     .maybeSingle();
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    if (shouldUseLocalFallback(error)) return mockSongs.find((song) => song.slug === slug) ?? null;
+    throw new Error(error.message);
+  }
+
   if (!data) return null;
 
   const lines = ((data.lyrics_lines ?? []) as LyricsLineRow[]).map((line) => ({

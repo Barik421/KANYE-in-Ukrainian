@@ -1,6 +1,6 @@
 import type { SongDetail, SongSummary } from '../types/content';
 
-const mockSong: SongDetail = {
+const mockRunawaySong: SongDetail = {
   id: '00000000-0000-4000-8000-000000000001',
   title: 'Runaway',
   slug: 'runaway',
@@ -51,5 +51,67 @@ const mockSong: SongDetail = {
   ],
 };
 
-export const mockFeaturedSongs: SongSummary[] = [mockSong];
-export const mockSongs: SongDetail[] = [mockSong];
+const mockTrialSong: SongDetail = {
+  id: '00000000-0000-4000-8000-000000000002',
+  title: 'All Falls Down',
+  slug: 'all-falls-down',
+  album: 'The College Dropout',
+  release_year: 2004,
+  cover_url: null,
+  youtube_music_url: 'https://music.youtube.com/search?q=Kanye%20West%20All%20Falls%20Down',
+  spotify_url: 'https://open.spotify.com/search/All%20Falls%20Down%20Kanye%20West',
+  apple_music_url: 'https://music.apple.com/search?term=Kanye%20West%20All%20Falls%20Down',
+  soundcloud_url: null,
+  short_description:
+    'Пробна локальна сторінка для перевірки додавання тексту, українського перекладу й пояснень.',
+  is_featured: true,
+  published: true,
+  lyrics_lines: [
+    {
+      id: '00000000-0000-4000-8000-000000000201',
+      song_id: '00000000-0000-4000-8000-000000000002',
+      line_number: 1,
+      section: 'Intro',
+      original_text: '[original line 1 goes here]',
+      translated_text: 'Тут буде український переклад першого рядка.',
+      annotations: [
+        {
+          id: '00000000-0000-4000-8000-000000002001',
+          line_id: '00000000-0000-4000-8000-000000000201',
+          phrase: 'original line',
+          explanation:
+            'Тестове пояснення: тут можна розібрати сленг, гру слів або культурний контекст конкретної фрази.',
+        },
+      ],
+    },
+    {
+      id: '00000000-0000-4000-8000-000000000202',
+      song_id: '00000000-0000-4000-8000-000000000002',
+      line_number: 2,
+      section: 'Verse 1',
+      original_text: '[original line 2 goes here]',
+      translated_text: 'Тут буде український переклад другого рядка.',
+      annotations: [],
+    },
+    {
+      id: '00000000-0000-4000-8000-000000000203',
+      song_id: '00000000-0000-4000-8000-000000000002',
+      line_number: 3,
+      section: 'Verse 1',
+      original_text: '[original line 3 goes here]',
+      translated_text: 'Тут буде український переклад третього рядка.',
+      annotations: [
+        {
+          id: '00000000-0000-4000-8000-000000002003',
+          line_id: '00000000-0000-4000-8000-000000000203',
+          phrase: 'line 3',
+          explanation:
+            'Приклад другої анотації до іншого рядка. Фраза має точно збігатися з частиною original_text.',
+        },
+      ],
+    },
+  ],
+};
+
+export const mockSongs: SongDetail[] = [mockTrialSong, mockRunawaySong];
+export const mockFeaturedSongs: SongSummary[] = mockSongs.filter((song) => song.is_featured);
